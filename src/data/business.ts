@@ -54,7 +54,7 @@ export const aiCatalog = {
   host: { displayName: business.name, documentationUrl: `${SITE_URL}/llms.txt` },
   entries: [
     {
-      identifier: "urn:studiokurki:business:webmcp",
+      identifier: "urn:air:studiokurki.fi:business:studio-kurki-webmcp",
       displayName: "Studio Kurki WebMCP-manifesti",
       type: "application/json",
       url: `${SITE_URL}/.well-known/webmcp.json`,
