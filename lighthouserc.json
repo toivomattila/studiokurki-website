@@ -22,7 +22,7 @@
           }
         },
         {
-          "matchingUrlPattern": "https?://[^/]+/(palvelut|yhteystiedot)/index\\.html$",
+          "matchingUrlPattern": "https?://[^/]+/(palvelut|hinnasto|valokuvaaja|yhteystiedot)/index\\.html$",
           "assertions": {
             "categories:performance": ["error", { "minScore": 0.9 }],
             "categories:accessibility": ["error", { "minScore": 0.95 }],

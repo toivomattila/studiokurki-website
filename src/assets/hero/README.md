@@ -1,3 +1,3 @@
 # Hero photograph
 
-Drop a JPG, PNG, or WebP file here when a real Studio Kurki photograph is ready. The first filename in alphabetical order is used. No stock or generated photograph should be presented as Arnon's work.
+The selected hero photograph is `norja-turkoosi-tunturijarvi.jpg`. It is a photograph by Arnon Kurki; its alt text is maintained in `src/data/portfolio.ts`.

@@ -1,17 +1,24 @@
 import sharp from "sharp";
 import { mkdir, writeFile } from "node:fs/promises";
-
 await mkdir("public", { recursive: true });
-const mark = `<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" fill="#f5f3ee"/><rect x="30" y="30" width="452" height="452" fill="none" stroke="#59605b" stroke-width="2"/><text x="256" y="350" text-anchor="middle" font-family="Georgia,serif" font-size="300" fill="#242522">K</text></svg>`;
-await writeFile("public/favicon.svg", mark);
-const iconPng = (size) => sharp(Buffer.from(mark)).resize(size, size).png().toBuffer();
-await Promise.all([
-  iconPng(180).then((data) => sharp(data).toFile("public/apple-touch-icon.png")),
-  iconPng(192).then((data) => sharp(data).toFile("public/icon-192.png")),
-  iconPng(512).then((data) => sharp(data).toFile("public/icon-512.png")),
-]);
-const sizes = [16, 32, 48];
-const pngs = await Promise.all(sizes.map(iconPng));
+const paper = "#f5f3ee";
+const mark = await sharp("src/assets/brand/kurki-mark.png").png().toBuffer();
+const logo = await sharp("src/assets/brand/studio-kurki-logo.png").png().toBuffer();
+const mark64 = mark.toString("base64");
+const svgIcon = (size) =>
+  Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 512 512"><rect width="512" height="512" fill="${paper}"/><image href="data:image/png;base64,${mark64}" x="72" y="72" width="368" height="368" preserveAspectRatio="xMidYMid meet"/></svg>`,
+  );
+const iconPng = (size) => sharp(svgIcon(size)).resize(size, size).png().toBuffer();
+await writeFile("public/favicon.svg", svgIcon(512));
+for (const [size, path] of [
+  [180, "public/apple-touch-icon.png"],
+  [192, "public/icon-192.png"],
+  [512, "public/icon-512.png"],
+])
+  await writeFile(path, await iconPng(size));
+const sizes = [16, 32, 48],
+  pngs = await Promise.all(sizes.map(iconPng));
 const header = Buffer.alloc(6 + sizes.length * 16);
 header.writeUInt16LE(0, 0);
 header.writeUInt16LE(1, 2);
@@ -28,8 +35,9 @@ for (const [i, size] of sizes.entries()) {
   offset += pngs[i].length;
 }
 await writeFile("public/favicon.ico", Buffer.concat([header, ...pngs]));
-const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#f5f3ee"/><rect x="55" y="55" width="1090" height="520" fill="none" stroke="#d7d5cf" stroke-width="2"/><text x="100" y="190" font-family="Arial,sans-serif" font-size="22" letter-spacing="7" fill="#59605b">VALOKUVAAJA · LAHTI</text><text x="92" y="365" font-family="Georgia,serif" font-size="112" fill="#242522">Studio Kurki</text><path d="M100 415h140" stroke="#59605b" stroke-width="2"/><text x="100" y="490" font-family="Arial,sans-serif" font-size="30" letter-spacing="2" fill="#454641">Valokuvaaja Arnon Kurki · Lahti</text><text x="1035" y="530" font-family="Georgia,serif" font-size="115" fill="#59605b" opacity=".12">K</text></svg>`;
-await sharp(Buffer.from(og)).png().toFile("public/og-image.png");
+await sharp(logo).resize({ width: 600 }).png().toFile("public/logo.png");
+const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><rect width="1200" height="630" fill="${paper}"/><image href="data:image/png;base64,${logo.toString("base64")}" x="70" y="115" width="510" height="400" preserveAspectRatio="xMidYMid meet"/><text x="630" y="300" font-family="Georgia,serif" font-size="54" fill="#242522">Valokuvaaja</text><text x="630" y="375" font-family="Georgia,serif" font-size="54" fill="#242522">Arnon Kurki · Lahti</text></svg>`;
+await sharp(Buffer.from(ogSvg)).png().toFile("public/og-image.png");
 await writeFile(
   "public/site.webmanifest",
   JSON.stringify(
@@ -39,8 +47,8 @@ await writeFile(
       lang: "fi",
       start_url: "/",
       display: "standalone",
-      background_color: "#f5f3ee",
-      theme_color: "#f5f3ee",
+      background_color: paper,
+      theme_color: paper,
       icons: [
         { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
         { src: "/icon-512.png", sizes: "512x512", type: "image/png" },

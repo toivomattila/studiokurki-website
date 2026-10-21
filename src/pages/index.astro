@@ -1,37 +1,15 @@
 ---
 import { Picture } from 'astro:assets';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'; import SiteHeader from '../components/SiteHeader.astro'; import SiteFooter from '../components/SiteFooter.astro';
 import { heroAlt, portfolioMetadata } from '../data/portfolio';
-
-const portfolio = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/portfolio/*.{jpg,jpeg,png,webp}', { eager: true }));
-const hero = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/hero/*.{jpg,jpeg,png,webp}', { eager: true })).sort(([a], [b]) => a.localeCompare(b))[0]?.[1].default;
-const sortedPortfolio = portfolio.sort(([a], [b]) => a.localeCompare(b));
+const portfolio = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/portfolio/*.{jpg,jpeg,png,webp}', { eager: true })).sort(([a],[b]) => a.localeCompare(b));
+const hero = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/hero/*.{jpg,jpeg,png,webp}', { eager: true })).sort(([a],[b]) => a.localeCompare(b))[0]?.[1].default;
+const services = [{id:'henkilokuvaus',name:'Henkilökuvaus',line:'Luonnollisia kuvia, joissa elämä saa näkyä.'},{id:'haakuvaus',name:'Hääkuvaus',line:'Kihloista vihkimiseen ja juhlaan.'},{id:'asuntokuvaus',name:'Asuntokuvaus',line:'Luonnollinen valo, harkitut kuvakulmat.'},{id:'ajoneuvokuvaus',name:'Ajoneuvokuvaus',line:'Korostan muotoilua, yksityiskohtia ja tunnelmaa.'}];
 ---
-<BaseLayout title="Studio Kurki – Valokuvaaja Arnon Kurki, Lahti" description="Valokuvaaja Arnon Kurki Lahdesta. Maisemakuvausta, muotokuvia, hää- ja tapahtumakuvausta sekä kuvankäsittelyä." path="/">
-  <SiteHeader />
-  <main id="main">
-    <section class="hero container">
-      <div>
-        <p class="eyebrow">Studio Kurki · Lahti</p>
-        <h1>Luonto, valo ja tunnelma.</h1>
-        <p class="lead">Olen Arnon Kurki, valokuvaaja Lahdesta. Olen erikoistunut maisemakuvaukseen ja autan mielelläni myös muissa kuvaustarpeissa.</p>
-        <div class="actions"><a class="button-link" href="/yhteystiedot/">Ota yhteyttä</a><a href="#portfolio">Katso kuvia</a></div>
-      </div>
-      {hero ? <Picture class="hero-art" src={hero} alt={heroAlt} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 700px) 100vw, 50vw" priority /> : <div class="hero-art placeholder" aria-hidden="true"><span>Kuva tulossa</span></div>}
-    </section>
-    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="container">
-        <div class="section-heading"><div><p class="eyebrow">Valikoima</p><h2 id="portfolio-title">Kuvia</h2></div><p>Maisemakuvaus on työskentelyni lähtökohta.</p></div>
-        {sortedPortfolio.length ? <div class="gallery">{sortedPortfolio.map(([filename, image], index) => { const item = portfolioMetadata[filename.split('/').pop() ?? '']; return <figure class="gallery-item"><Picture src={image.default} alt={item?.alt ?? ''} formats={['avif', 'webp']} widths={[400, 700, 1000]} sizes="(max-width: 700px) 50vw, 33vw" loading={index === 0 ? 'eager' : 'lazy'} />{item?.caption && <figcaption>{item.caption}</figcaption>}</figure>; })}</div> : <><div class="gallery" aria-hidden="true">{Array.from({ length: 9 }, () => <div class="gallery-item"><div class="placeholder"><span>Kuva tulossa</span></div></div>)}</div><p class="gallery-note">Portfoliokuvat lisätään pian.</p></>}
-      </div>
-    </section>
-    <section class="section"><div class="container about-teaser"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div><p>Luonto, valot ja tunnelmat ovat minulle läheisiä. Syvennyin valokuvaukseen vuonna 2021 vuoden mittaisella kurssilla Vapaassa Akatemiassa. Sen jälkeen olen jatkanut kuvaamista ja taitojeni kehittämistä harrastajana.</p><a href="/palvelut/#arnon">Lue lisää Arnonista →</a></div></div></section>
-    <section class="section"><div class="container contact-band"><div><h2>Mielessä kuvaus?</h2><p>Kerro kuvausideastasi sähköpostitse: <a href="mailto:arnon@studiokurki.fi">arnon@studiokurki.fi</a>.</p></div><a class="button-link" href="/yhteystiedot/">Yhteystiedot</a></div></section>
-  </main>
-  <SiteFooter />
-  <script>
-    import '../scripts/webmcp';
-  </script>
-</BaseLayout>
+<BaseLayout title="Studio Kurki – Valokuvaaja Arnon Kurki" description="Valokuvauspalvelut ihmisille, kodeille ja ajoneuvoille. Kuvaan tavalla, jossa tekninen laatu ja tunnelma kulkevat yhdessä." path="/"><SiteHeader/><main id="main">
+<section class="hero container"><div><p class="eyebrow">Studio Kurki · Lahti</p><h1>Valokuvausta, joka tekee vaikutuksen</h1><p class="lead">Valokuvauspalvelut ihmisille, kodeille ja ajoneuvoille</p><div class="actions"><a class="button-link" href="/palvelut/">Tutustu palveluihin</a><a class="button-link button-light" href="/hinnasto/">Katso hinnat</a></div></div>{hero && <Picture class="hero-art" src={hero} alt={heroAlt} formats={['avif','webp']} widths={[640,960,1280,1920,2400]} sizes="100vw" priority fetchpriority="high" loading="eager"/>}</section>
+<section class="section"><div class="container about-teaser"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div><p>Olen Arnon Kurki, Studio Kurjen valokuvaaja. Kuvaamisessa minua kiehtovat erityisesti valo, värit, symmetria ja kontrastit. Etsin tavallisistakin hetkistä jotain kiinnostavaa ja pyrin tekemään kuvista teknisesti viimeisteltyjä mutta samalla tunnelmallisia.</p><p>Kuvaan ihmisiä, koteja ja ajoneuvoja tavalla, jossa tekninen laatu ja tunnelma kulkevat yhdessä. Jokainen kuvaus suunnitellaan kohteen ja tilanteen mukaan – tavoitteena luonnolliset, huolellisesti viimeistellyt kuvat, jotka näyttävät ja tuntuvat hyvältä.</p><a href="/valokuvaaja/">Tutustu valokuvaajaan →</a></div></div></section>
+<section class="section"><div class="container"><p class="eyebrow">Työskentelyni</p><h2>Kuvauksen ytimessä</h2><div class="two-cards"><article><h3>Tekninen laatu</h3><p>Haluan rakentaa jokaisen kuvan huolellisesti valon, sommittelun, värien ja yksityiskohtien ympärille. Tekninen laatu luo pohjan kuvalle, joka kestää katselua myös lähempää.</p></article><article><h3>Tunnelma</h3><p>Pelkkä teknisesti onnistunut kuva ei kuitenkaan riitä. Etsin tilanteista tunnelmaa ja hetkiä, jotka tekevät kuvasta kiinnostavan ja antavat sille oman luonteensa.</p></article></div></div></section>
+<section class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">Palvelut</p><h2>Kuvaus sinulle</h2></div><a href="/palvelut/">Kaikki palvelut →</a></div><div class="service-cards">{services.map(s=><a class="service-card" href={`/palvelut/#${s.id}`}><h3>{s.name}</h3><p>{s.line}</p></a>)}</div></div></section>
+<section class="section" id="portfolio"><div class="container"><div class="section-heading"><div><p class="eyebrow">Valikoima</p><h2>Kuvissani pääset näkemään, mitä silmäni näkevät.</h2></div><p>Kaikki lähti luonnosta ja maisemasta – ne olivat kuvauskohteeni, kun sain ensimmäisen kamerani nuorena.</p></div><div class="gallery">{portfolio.map(([filename,image])=>{const item=portfolioMetadata[filename.split('/').pop() ?? ''];return <figure class="gallery-item"><Picture src={image.default} alt={item?.alt ?? ''} formats={['avif','webp']} widths={[400,700,1000]} sizes="(max-width: 700px) 50vw, 33vw" loading="lazy" decoding="async"/><figcaption>{item?.caption}</figcaption></figure>})}</div></div></section>
+<section class="quote-band"><div class="container"><p class="quote">Kuvaan, jotta hetki säilyy.</p><p>Yhtä tärkeää minulle on mahdollisuus tallentaa ihmisille hetkiä, joihin he voivat palata vielä vuosienkin kuluttua.</p></div></section><section class="section"><div class="container contact-band"><div><h2>Mikä hetki teillä on tulossa?</h2><p>Tehdään siitä muisto yhdessä.</p></div><a class="button-link" href="/yhteystiedot/">Ota yhteyttä</a></div></section></main><SiteFooter/><script>import '../scripts/webmcp';</script></BaseLayout>

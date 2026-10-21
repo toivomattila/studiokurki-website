@@ -1,3 +1,4 @@
+import { allPrices, formatPrice, priceGroups, priceNotes } from "./prices";
 import { SITE_URL } from "./site";
 
 export const business = {
@@ -6,38 +7,46 @@ export const business = {
   email: "arnon@studiokurki.fi",
   instagram: "https://www.instagram.com/studiokurki/",
   instagramHandle: "@studiokurki",
+  facebook: "https://www.facebook.com/profile.php?id=61582904011645",
   locality: "Lahti",
   businessId: "2960962-9",
   founder: "Arnon Kurki",
   services: [
     {
-      name: "Maisemakuvaus",
-      description: "Luonto, valot ja tunnelmat ovat minulle läheisiä.",
-    },
-    {
-      name: "Muotokuvat",
-      description: "Kuvaan myös muotokuvia. Kerro, millaisia kuvia tarvitset.",
+      name: "Henkilökuvaus",
+      description: "Luonnollisia kuvia lapsista, perheistä, valmistujaisista ja muotokuvista.",
     },
     {
       name: "Hääkuvaus",
-      description:
-        "Kuvaan myös häitä. Kerro hääpäivän ajankohta ja paikka sekä toiveet kuvaukselle.",
+      description: "Kihlapotretit, hääpotretit sekä vihkimisen ja juhlien tärkeät hetket.",
     },
     {
-      name: "Tapahtumakuvaus",
-      description: "Kuvaan myös tapahtumia. Kerro tapahtuman aihe, ajankohta ja paikka.",
+      name: "Asuntokuvaus",
+      description: "Luonnolliset ja kutsuvat kuvat kodista, myös dronekuvat sovittaessa.",
     },
     {
-      name: "Kuvankäsittely",
-      description: "Teen yritysten kuvankäsittelyä kevyesti: säädän valoa, värejä ja yleisilmettä.",
+      name: "Ajoneuvokuvaus",
+      description: "Valokuvat ja myyntivideo, jotka tuovat ajoneuvon ilmeen esiin.",
     },
   ],
 } as const;
-
+export const priceSummary = `Hinnat ${formatPrice(Math.min(...allPrices))}–${formatPrice(Math.max(...allPrices))}.`;
+export const fullPriceText =
+  priceGroups
+    .map(
+      (g) =>
+        `${g.title}\n${g.packages.map((p) => `- ${p.name}: ${formatPrice(p.price)} — ${p.details.join("; ")}`).join("\n")}`,
+    )
+    .join("\n\n") + `\n\nHuomioitavaa\n${priceNotes.map((n) => `- ${n}`).join("\n")}`;
 export const webmcpTools = [
   {
     name: "get_services",
-    description: "Hakee Studio Kurjen valokuvauspalvelut.",
+    description: "Hakee Studio Kurjen valokuvauspalvelut ja hintayhteenvedon.",
+    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+  },
+  {
+    name: "get_prices",
+    description: "Hakee Studio Kurjen hinnaston ja hintahuomiot.",
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
   {
@@ -46,7 +55,6 @@ export const webmcpTools = [
     inputSchema: { type: "object", properties: {}, additionalProperties: false },
   },
 ] as const;
-
 export const aiCatalog = {
   specVersion: "1.0",
   host: { displayName: business.name, documentationUrl: `${SITE_URL}/llms.txt` },
@@ -56,9 +64,10 @@ export const aiCatalog = {
       displayName: "Studio Kurki WebMCP-manifesti",
       type: "application/json",
       url: `${SITE_URL}/.well-known/webmcp.json`,
-      description: "Manifesti palveluiden ja yhteystietojen lukemiseen.",
+      description: "Manifesti palveluiden, hintojen ja yhteystietojen lukemiseen.",
       representativeQueries: [
         "Mitä kuvauspalveluja Studio Kurki tarjoaa?",
+        "Mitä Studio Kurjen kuvauspaketit maksavat?",
         "Miten saan yhteyden Studio Kurkeen?",
       ],
       metadata: {

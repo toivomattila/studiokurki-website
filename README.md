@@ -1,39 +1,19 @@
 # Studio Kurki
 
-Staattinen suomenkielinen Astro-sivusto valokuvaaja Arnon Kurjelle Lahteen. Sivusto toimii ilman asiakaspuolen JavaScriptiä; pieni WebMCP-skripti rekisteröi vain luku -työkalut selaimissa, jotka tukevat niitä.
+## Suomeksi
 
-## Kehitys
+Staattinen Astro-sivusto valokuvaaja Arnon Kurjelle Lahteen. Sivuston suomenkielinen sisältö pohjautuu Arnonin toimittamaan lopulliseen tekstiversioon (`/tmp/copy2-out.md`). Hinnat on tarkistettu Arnonin vanhalta Squarespace-sivustolta, ja ne ovat lähdekoodissa `src/data/prices.ts`; hinnat näkyvät aina tämän tiedoston tiedoista muodostettuina.
 
-Käytä Node.js 22:ta ja pnpm-versiota 10.34.6.
+Valokuvat ovat Arnonin omasta Squarespace-arkistosta. Kaikki 18 portfolioaineiston tiedostonimeä, kuvaustekstit ja lähdenimet ovat `src/data/portfolio.ts`-tiedostossa. Palvelu-, hero- ja henkilökuvat ovat `src/assets/services/`, `src/assets/hero/` ja `src/assets/about/`. Emme käytä AI:lla luotuja tai kuvapankkikuvia. Brändin alkuperäiset logot ovat `src/assets/brand/`; asset-skripti skaalaa nosturimerkin ikoneihin ja täyden logon jakokuvaan.
 
-```sh
-pnpm install
-pnpm dev
-```
+Kehitys: Node.js 22 ja pnpm 10.34.6. Asenna riippuvuudet komennolla `pnpm install`. Tarkistukset: `pnpm format`, `pnpm format:check`, `pnpm lint`, `pnpm shadcn:lint`, `pnpm check`, `pnpm doctor`, `pnpm build`.
 
-## Tarkistukset ja build
-
-```sh
-pnpm format
-pnpm format:check
-pnpm lint
-pnpm shadcn:lint
-pnpm check
-pnpm doctor
-pnpm build
-pnpm lhci
-```
-
-## Kuvat ja sisältö
-
-Lisää portfoliokuvat hakemistoon `src/assets/portfolio/` JPG-, PNG- tai WebP-muodossa. Nimeä tiedostot järjestykseen, esimerkiksi `01-maisema-vesijarvi.jpg`; galleria järjestää ne tiedostonimen mukaan. Kirjoita alt-tekstit ja mahdolliset kuvatekstit tiedostoon `src/data/portfolio.ts` tiedostonimen perusteella. Hero-kuvan voi lisätä hakemistoon `src/assets/hero/`. Kun kuvia ei ole, sivusto näyttää paikkamerkin tekstillä “Kuva tulossa”.
-
-Vaihda julkaisun yhteydessä `SITE_URL` tiedostossa `src/data/site.ts` osoitteeksi `https://studiokurki.fi`. Astro-konfiguraatio, canonical-osoitteet, sitemap, robots.txt sekä tekoälyrajapintojen linkit käyttävät samaa arvoa.
-
-Kaikki sivuston tekstit perustuvat sallittuihin facts.md-lähteisiin: Arnon Kurjen omaan Freedomly-profiiliin (https://freedomly.io/u/674e1b7f-a87d-4182-886c-38da695fdae3), yrityksen rekisteri- ja toimialatietoihin (Proff.fi ja Kauppalehti), Arnonin omiin Studio Kurjen sähköposteihin sekä yhteystietona annettuun sähköpostiosoitteeseen.
+Julkaisuun siirryttäessä vaihda sivuston osoite kerran tiedostossa `src/data/site.ts` (`SITE_URL`). Kanoniset osoitteet, sitemap, JSON-LD ja WebMCP käyttävät samaa arvoa.
 
 ## English
 
-Static Finnish-language Astro website for photographer Arnon Kurki in Lahti. Add portfolio photographs to `src/assets/portfolio/` and an optional hero photo to `src/assets/hero/`. Use descriptive filenames; set verified alt text and optional captions in `src/data/portfolio.ts`, keyed by filename. Until real photos are added, intentional placeholders display “Kuva tulossa”. No stock or generated photos are used.
+Static Astro website for photographer Arnon Kurki in Lahti, Finland. Finnish page copy comes from Arnon's supplied final copy (`/tmp/copy2-out.md`). Prices were verified against Arnon's archived Squarespace site and live in `src/data/prices.ts`; pages render prices directly from that data.
 
-Use Node.js 22 and pnpm 10.34.6. Run `pnpm install`, `pnpm dev`, and the checks listed above. At launch, change `SITE_URL` once in `src/data/site.ts` to `https://studiokurki.fi`. All site copy is based on the sources listed in facts.md: Arnon's Freedomly profile, Finnish business register information via Proff.fi and Kauppalehti, and Arnon's own Studio Kurki emails.
+Photographs come from Arnon's old Squarespace archive. The 18 portfolio filenames, alt text, captions, and source filenames are recorded in `src/data/portfolio.ts`. Service, hero, and portrait images are in `src/assets/services/`, `src/assets/hero/`, and `src/assets/about/`. No AI-generated or stock images are used. Original brand marks are in `src/assets/brand/`; the asset generator scales the crane mark for icons and the full logo for social sharing.
+
+Use Node.js 22 and pnpm 10.34.6. Install with `pnpm install`; available checks are listed above. At launch, change `SITE_URL` once in `src/data/site.ts`. Canonicals, sitemap, JSON-LD, and WebMCP use that single value.

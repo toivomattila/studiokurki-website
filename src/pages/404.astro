@@ -1,10 +1,4 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'; import SiteHeader from '../components/SiteHeader.astro'; import SiteFooter from '../components/SiteFooter.astro';
 ---
-<BaseLayout title="Sivua ei löytynyt – Studio Kurki" description="Etsimääsi sivua ei löydy tästä osoitteesta." path="/404.html" noindex>
-  <SiteHeader />
-  <main id="main" class="container page-heading"><p class="eyebrow">Studio Kurki</p><h1>Sivua ei löytynyt</h1><p class="lead">Etsimääsi sivua ei löydy tästä osoitteesta.</p><a class="button-link" href="/">Palaa etusivulle</a></main>
-  <SiteFooter />
-</BaseLayout>
+<BaseLayout title="Sivua ei löytynyt – Studio Kurki" description="Etsimääsi sivua ei löytynyt." path="/404.html" noindex><SiteHeader/><main id="main" class="container page-heading"><p class="eyebrow">Studio Kurki</p><h1>Sivua ei löytynyt</h1><p class="lead">Etsimääsi sivua ei löytynyt.</p><a class="button-link" href="/">Palaa etusivulle</a></main><SiteFooter/></BaseLayout>

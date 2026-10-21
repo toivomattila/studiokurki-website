@@ -1,3 +1,3 @@
 # Portfolio photographs
 
-Drop JPG, PNG, or WebP files here, named for example `01-maisema-vesijarvi.jpg`. Files are shown in filename order. Add alt text and optional caption or category in `src/data/portfolio.ts`, keyed by filename. Describe only verified details. The gallery shows “Kuva tulossa” placeholders until photos are added.
+The 18 photographs in this directory are by Arnon Kurki and appear in filename order. Verified alt text, captions, and original archive filenames are recorded in `src/data/portfolio.ts`. No AI-generated or stock photographs are used.
