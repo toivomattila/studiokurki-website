@@ -3,6 +3,6 @@ import { Image } from 'astro:assets';
 import mark from '../assets/brand/kurki-mark.png';
 ---
 <header class="site-header">
-  <a class="brand-link" href="/" aria-label="Studio Kurki, etusivu"><Image src={mark} alt="" width={52} height={52} loading="eager" /><span>Studio Kurki</span></a>
+  <a class="brand-link" href="/" aria-label="Studio Kurki, etusivu"><Image src={mark} alt="" width={52} height={52} densities={[1, 2, 3]} loading="eager" /><span>Studio Kurki</span></a>
   <nav aria-label="Päänavigaatio"><a href="/#portfolio">Kuvat</a><a href="/palvelut/">Palvelut</a><a href="/hinnasto/">Hinnasto</a><a href="/valokuvaaja/">Valokuvaaja</a><a href="/yhteystiedot/">Yhteystiedot</a></nav>
 </header>
