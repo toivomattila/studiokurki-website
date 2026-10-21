@@ -1,0 +1,5 @@
+offline = true
+exclude = ["^mailto:"]
+accept = ["200..=299"]
+no_progress = true
+root_dir = "dist"

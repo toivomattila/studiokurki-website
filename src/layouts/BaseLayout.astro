@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import dmSansLatin from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import frauncesLatin from '@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url';
+import { SITE_URL } from '../data/site';
+import { business } from '../data/business';
+
+interface Props { title: string; description: string; path: string; noindex?: boolean }
+const { title, description, path, noindex = false } = Astro.props;
+const canonical = `${SITE_URL}${path}`;
+const ogImage = `${SITE_URL}/og-image.png`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: business.name, inLanguage: 'fi-FI' },
+    { '@type': 'ProfessionalService', '@id': `${SITE_URL}/#business`, name: business.name, url: SITE_URL, email: business.email, image: ogImage,
+      address: { '@type': 'PostalAddress', addressLocality: business.locality, addressCountry: 'FI' }, areaServed: business.locality, taxID: business.businessId,
+      knowsAbout: ['Maisemakuvaus', 'Muotokuvaus', 'Hääkuvaus', 'Tapahtumakuvaus', 'Kuvankäsittely'],
+      founder: { '@id': `${SITE_URL}/#arnon` } },
+    { '@type': 'Person', '@id': `${SITE_URL}/#arnon`, name: business.founder, jobTitle: 'Valokuvaaja', worksFor: { '@id': `${SITE_URL}/#business` } },
+  ],
+};
+---
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f3ee" />
+    <meta name="description" content={description} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mcp-manifest" href="/.well-known/webmcp.json" />
+    <link rel="ai-catalog" href="/.well-known/ai-catalog.json" />
+    <link rel="describedby" href="/llms.txt" type="text/markdown" />
+    <link rel="preload" href={frauncesLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={dmSansLatin} as="font" type="font/woff2" crossorigin />
+    <title>{title}</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fi_FI" />
+    <meta property="og:site_name" content="Studio Kurki" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!noindex && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Siirry sisältöön</a>
+    <slot />
+  </body>
+</html>
