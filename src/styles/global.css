@@ -274,7 +274,10 @@ nav a[aria-current="page"] {
 }
 .contact-band p a,
 .about-teaser a,
-.prose a {
+.prose a,
+.email-link,
+.contact-details a,
+.site-footer p a {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -329,6 +332,12 @@ nav a[aria-current="page"] {
   font-size: clamp(1.5rem, 6.5vw, 3.5rem);
   overflow-wrap: anywhere;
   display: inline-block;
+  text-decoration-thickness: 0.04em;
+  text-underline-offset: 0.16em;
+}
+.contact-details a {
+  color: var(--color-ink);
+  text-decoration-thickness: 1px;
 }
 .contact-details {
   line-height: 1.9;
