@@ -4,6 +4,8 @@ export const business = {
   name: "Studio Kurki",
   url: SITE_URL,
   email: "arnon@studiokurki.com",
+  instagram: "https://www.instagram.com/studiokurki/",
+  instagramHandle: "@studiokurki",
   locality: "Lahti",
   businessId: "2960962-9",
   founder: "Arnon Kurki",
@@ -28,10 +30,6 @@ export const business = {
     {
       name: "Kuvankäsittely",
       description: "Teen yritysten kuvankäsittelyä kevyesti: säädän valoa, värejä ja yleisilmettä.",
-    },
-    {
-      name: "Valokuvauksen opastus",
-      description: "Tarjoan apua ja opastusta valokuvaukseen tarpeen mukaan.",
     },
   ],
 } as const;

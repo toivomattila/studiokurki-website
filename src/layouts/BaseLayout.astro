@@ -16,7 +16,7 @@ const schema = {
     { '@type': 'ProfessionalService', '@id': `${SITE_URL}/#business`, name: business.name, url: SITE_URL, email: business.email, image: ogImage,
       address: { '@type': 'PostalAddress', addressLocality: business.locality, addressCountry: 'FI' }, areaServed: business.locality, taxID: business.businessId,
       knowsAbout: ['Maisemakuvaus', 'Muotokuvaus', 'Hääkuvaus', 'Tapahtumakuvaus', 'Kuvankäsittely'],
-      founder: { '@id': `${SITE_URL}/#arnon` } },
+      founder: { '@id': `${SITE_URL}/#arnon` }, sameAs: [business.instagram] },
     { '@type': 'Person', '@id': `${SITE_URL}/#arnon`, name: business.founder, jobTitle: 'Valokuvaaja', worksFor: { '@id': `${SITE_URL}/#business` } },
   ],
 };

@@ -12,6 +12,7 @@ if (modelContext) {
       business.locality,
       `Y-tunnus: ${business.businessId}`,
       `Sähköposti: ${business.email}`,
+      `Instagram: ${business.instagram}`,
     ].join("\n"),
   };
   for (const tool of webmcpTools) {

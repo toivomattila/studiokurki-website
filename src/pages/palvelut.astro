@@ -4,13 +4,13 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { business } from '../data/business';
 ---
-<BaseLayout title="Valokuvauspalvelut – Studio Kurki, Lahti" description="Tutustu Studio Kurjen valokuvauspalveluihin: maisema-, muotokuva-, hää- ja tapahtumakuvaus, kuvankäsittely sekä valokuvauksen opastus." path="/palvelut/">
+<BaseLayout title="Valokuvauspalvelut – Studio Kurki, Lahti" description="Tutustu Studio Kurjen valokuvauspalveluihin: maisema-, muotokuva-, hää- ja tapahtumakuvaus sekä kuvankäsittely." path="/palvelut/">
   <SiteHeader />
   <main id="main" class="container">
-    <header class="page-heading"><p class="eyebrow">Studio Kurki · Lahti</p><h1>Valokuvauspalvelut</h1><p class="lead">Olen erikoistunut maisemakuvaukseen. Autan myös muissa kuvauksissa, kuvankäsittelyssä ja valokuvauksen opastuksessa.</p></header>
+    <header class="page-heading"><p class="eyebrow">Studio Kurki · Lahti</p><h1>Valokuvauspalvelut</h1><p class="lead">Olen erikoistunut maisemakuvaukseen. Kuvaan myös muotokuvia, häitä ja tapahtumia, ja teen kuvankäsittelyä.</p></header>
     <ul class="service-list">{business.services.map((service) => <li><h2>{service.name}</h2><p>{service.description}</p></li>)}</ul>
     <p class="prose">Kysy tarjous: <a href="mailto:arnon@studiokurki.com">arnon@studiokurki.com</a>.</p>
-    <section class="section about-teaser" id="arnon"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div class="prose"><p>Olen Arnon Kurki, valokuvaaja Lahdesta. Olen erikoistunut maisemakuvaukseen. Luonto, valot ja tunnelmat ovat sydäntäni lähellä. Syvennyin valokuvaukseen vuonna 2021 vuoden mittaisella kurssilla Vapaassa Akatemiassa. Kurssin jälkeen jatkoin aktiivisesti kuvaamista harrastajana, kehitin taitojani ja laajensin osaamistani. Maisemien lisäksi autan mielelläni myös muissa valokuvauksen osa-alueissa. Tarjoan valokuvauksen opastusta. Palvelen suomeksi ja englanniksi, ja osaamiseeni kuuluu Adobe Lightroom.</p></div></section>
+    <section class="section about-teaser" id="arnon"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div class="prose"><p>Olen Arnon Kurki, valokuvaaja Lahdesta. Olen erikoistunut maisemakuvaukseen. Luonto, valot ja tunnelmat ovat sydäntäni lähellä. Syvennyin valokuvaukseen vuonna 2021 vuoden mittaisella kurssilla Vapaassa Akatemiassa. Kurssin jälkeen jatkoin aktiivisesti kuvaamista harrastajana, kehitin taitojani ja laajensin osaamistani. Maisemien lisäksi autan mielelläni myös muissa valokuvauksen osa-alueissa. Palvelen suomeksi ja englanniksi, ja osaamiseeni kuuluu Adobe Lightroom.</p></div></section>
   </main>
   <SiteFooter />
   <script>import '../scripts/webmcp';</script>

@@ -9,7 +9,7 @@ const portfolio = Object.entries(import.meta.glob<{ default: ImageMetadata }>('.
 const hero = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/hero/*.{jpg,jpeg,png,webp}', { eager: true })).sort(([a], [b]) => a.localeCompare(b))[0]?.[1].default;
 const sortedPortfolio = portfolio.sort(([a], [b]) => a.localeCompare(b));
 ---
-<BaseLayout title="Studio Kurki – Valokuvaaja Arnon Kurki, Lahti" description="Valokuvaaja Arnon Kurki Lahdesta. Maisemakuvausta, muotokuvia, hää- ja tapahtumakuvausta sekä kuvankäsittelyä ja valokuvauksen opastusta." path="/">
+<BaseLayout title="Studio Kurki – Valokuvaaja Arnon Kurki, Lahti" description="Valokuvaaja Arnon Kurki Lahdesta. Maisemakuvausta, muotokuvia, hää- ja tapahtumakuvausta sekä kuvankäsittelyä." path="/">
   <SiteHeader />
   <main id="main">
     <section class="hero container">
