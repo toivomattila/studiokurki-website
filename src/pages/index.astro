@@ -3,7 +3,7 @@ import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import { portfolioMetadata } from '../data/portfolio';
+import { heroAlt, portfolioMetadata } from '../data/portfolio';
 
 const portfolio = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/portfolio/*.{jpg,jpeg,png,webp}', { eager: true }));
 const hero = Object.entries(import.meta.glob<{ default: ImageMetadata }>('../assets/hero/*.{jpg,jpeg,png,webp}', { eager: true })).sort(([a], [b]) => a.localeCompare(b))[0]?.[1].default;
@@ -16,10 +16,10 @@ const sortedPortfolio = portfolio.sort(([a], [b]) => a.localeCompare(b));
       <div>
         <p class="eyebrow">Studio Kurki · Lahti</p>
         <h1>Luonto, valo ja tunnelma.</h1>
-        <p class="lead">Olen Arnon Kurki, valokuvaaja Lahdesta. Maisemakuvaus on pääalani, mutta autan mielelläni myös muissa kuvaustarpeissa.</p>
+        <p class="lead">Olen Arnon Kurki, valokuvaaja Lahdesta. Olen erikoistunut maisemakuvaukseen ja autan mielelläni myös muissa kuvaustarpeissa.</p>
         <div class="actions"><a class="button-link" href="/yhteystiedot/">Ota yhteyttä</a><a href="#portfolio">Katso kuvia</a></div>
       </div>
-      {hero ? <Picture class="hero-art" src={hero} alt="Maisema valossa" formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 700px) 100vw, 50vw" priority /> : <div class="hero-art placeholder" aria-hidden="true"><span>Kuva tulossa</span></div>}
+      {hero ? <Picture class="hero-art" src={hero} alt={heroAlt} formats={['avif', 'webp']} widths={[640, 960, 1280]} sizes="(max-width: 700px) 100vw, 50vw" priority /> : <div class="hero-art placeholder" aria-hidden="true"><span>Kuva tulossa</span></div>}
     </section>
     <section class="section" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
@@ -27,8 +27,8 @@ const sortedPortfolio = portfolio.sort(([a], [b]) => a.localeCompare(b));
         {sortedPortfolio.length ? <div class="gallery">{sortedPortfolio.map(([filename, image], index) => { const item = portfolioMetadata[filename.split('/').pop() ?? '']; return <figure class="gallery-item"><Picture src={image.default} alt={item?.alt ?? ''} formats={['avif', 'webp']} widths={[400, 700, 1000]} sizes="(max-width: 700px) 50vw, 33vw" loading={index === 0 ? 'eager' : 'lazy'} />{item?.caption && <figcaption>{item.caption}</figcaption>}</figure>; })}</div> : <><div class="gallery" aria-hidden="true">{Array.from({ length: 9 }, () => <div class="gallery-item"><div class="placeholder"><span>Kuva tulossa</span></div></div>)}</div><p class="gallery-note">Portfoliokuvat lisätään pian.</p></>}
       </div>
     </section>
-    <section class="section"><div class="container about-teaser"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div><p>Luonto, valot ja tunnelmat ovat minulle läheisiä. Syvennyin valokuvaukseen vuonna 2021 Vapaassa Akatemiassa vuoden mittaisella kurssilla. Sen jälkeen olen jatkanut kuvaamista ja taitojeni kehittämistä harrastajana.</p><a href="/palvelut/#arnon">Lue lisää Arnonista →</a></div></div></section>
-    <section class="section"><div class="container contact-band"><div><h2>Mielessä kuvaus?</h2><p>Kerro ajatuksesta osoitteeseen <a href="mailto:arnon@studiokurki.com">arnon@studiokurki.com</a>.</p></div><a class="button-link" href="/yhteystiedot/">Yhteystiedot</a></div></section>
+    <section class="section"><div class="container about-teaser"><div><p class="eyebrow">Valokuvaaja</p><h2>Arnon Kurki</h2></div><div><p>Luonto, valot ja tunnelmat ovat minulle läheisiä. Syvennyin valokuvaukseen vuonna 2021 vuoden mittaisella kurssilla Vapaassa Akatemiassa. Sen jälkeen olen jatkanut kuvaamista ja taitojeni kehittämistä harrastajana.</p><a href="/palvelut/#arnon">Lue lisää Arnonista →</a></div></div></section>
+    <section class="section"><div class="container contact-band"><div><h2>Mielessä kuvaus?</h2><p>Kerro kuvausideastasi sähköpostitse: <a href="mailto:arnon@studiokurki.com">arnon@studiokurki.com</a>.</p></div><a class="button-link" href="/yhteystiedot/">Yhteystiedot</a></div></section>
   </main>
   <SiteFooter />
   <script>

@@ -7,7 +7,7 @@ export const GET: APIRoute = () =>
   new Response(
     `# Studio Kurki
 
-Studio Kurki on valokuvaaja Arnon Kurjen yritys Lahdessa. Maisemakuvaus on hänen pääalansa. Palveluihin kuuluvat maisema-, muotokuva-, hää- ja tapahtumakuvaus, kuvankäsittely sekä valokuvauksen opastus. Portfoliokuvat lisätään pian.
+Studio Kurki on valokuvaaja Arnon Kurjen yritys Lahdessa. Arnon on erikoistunut maisemakuvaukseen. Palveluihin kuuluvat maisema-, muotokuva-, hää- ja tapahtumakuvaus, kuvankäsittely sekä valokuvauksen opastus. Portfoliokuvat lisätään pian.
 
 ## Sivut
 - [Etusivu](${SITE_URL}/)

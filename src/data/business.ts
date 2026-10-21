@@ -10,8 +10,7 @@ export const business = {
   services: [
     {
       name: "Maisemakuvaus",
-      description:
-        "Olen erikoistunut maisemakuvaukseen. Luonto, valot ja tunnelmat ovat minulle läheisiä.",
+      description: "Luonto, valot ja tunnelmat ovat minulle läheisiä.",
     },
     {
       name: "Muotokuvat",
@@ -20,7 +19,7 @@ export const business = {
     {
       name: "Hääkuvaus",
       description:
-        "Hääkuvaus kuuluu palveluihini. Kerro hääpäivän ajankohta ja paikka sekä toiveet kuvaukselle.",
+        "Kuvaan myös häitä. Kerro hääpäivän ajankohta ja paikka sekä toiveet kuvaukselle.",
     },
     {
       name: "Tapahtumakuvaus",
@@ -28,8 +27,7 @@ export const business = {
     },
     {
       name: "Kuvankäsittely",
-      description:
-        "Teen yritysten olemassa oleviin valokuviin kevyttä muokkausta: valoa, värejä ja yleisilmettä.",
+      description: "Teen yritysten kuvankäsittelyä kevyesti: säädän valoa, värejä ja yleisilmettä.",
     },
     {
       name: "Valokuvauksen opastus",

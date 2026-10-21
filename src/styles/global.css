@@ -95,9 +95,12 @@ h3 {
 nav {
   display: flex;
   gap: clamp(0.8rem, 3vw, 2.5rem);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
 }
 nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   text-decoration: none;
 }
 nav a[aria-current="page"] {
@@ -111,7 +114,7 @@ nav a[aria-current="page"] {
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   color: var(--color-muted);
 }
 .hero {
@@ -121,11 +124,19 @@ nav a[aria-current="page"] {
   align-items: center;
   padding-block: clamp(3.5rem, 9vw, 8rem);
 }
+.hero > *,
+.section-heading > *,
+.about-teaser > *,
+.contact-band > *,
+.contact-layout > * {
+  min-width: 0;
+}
 .hero h1 {
-  max-width: 9ch;
-  font-size: clamp(3.3rem, 7.8vw, 7.4rem);
-  line-height: 0.96;
+  max-width: 10ch;
+  font-size: clamp(2.5rem, 7.8vw, 7.4rem);
+  line-height: 1.03;
   margin: 1.3rem 0;
+  overflow-wrap: anywhere;
 }
 .lead {
   max-width: 34rem;
@@ -139,6 +150,10 @@ nav a[aria-current="page"] {
   flex-wrap: wrap;
   margin-top: 2rem;
   font-size: 0.9rem;
+}
+.actions > a:not(.button-link) {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 .button-link {
   display: inline-block;
@@ -158,12 +173,16 @@ nav a[aria-current="page"] {
 .placeholder {
   display: grid;
   place-items: center;
-  background: var(--color-stone);
-  color: #64635f;
+  min-width: 0;
+  background: #e7e5e1;
+  color: #55544f;
 }
 .placeholder span {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
+  max-width: 100%;
+  padding-inline: 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 .section {
@@ -188,16 +207,14 @@ nav a[aria-current="page"] {
   color: var(--color-muted);
 }
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
+  columns: 3;
+  column-gap: 1rem;
 }
 .gallery-item {
-  grid-column: span 4;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  min-width: 0;
   overflow: hidden;
-}
-.gallery-item:nth-child(3n + 2) {
-  grid-column: span 4;
 }
 .gallery-item img {
   display: block;
@@ -206,10 +223,10 @@ nav a[aria-current="page"] {
   object-fit: cover;
 }
 .gallery-item .placeholder {
-  min-height: 20rem;
+  min-height: 0;
 }
 .gallery-item:nth-child(3n + 1) .placeholder {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 5 / 4;
 }
 .gallery-item:nth-child(3n + 2) .placeholder {
   aspect-ratio: 2 / 3;
@@ -220,7 +237,8 @@ nav a[aria-current="page"] {
 .gallery-note {
   margin-top: 1.2rem;
   color: var(--color-muted);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  color: #55544f;
 }
 .about-teaser {
   display: grid;
@@ -254,10 +272,16 @@ nav a[aria-current="page"] {
   margin: 0;
   color: #4f504b;
 }
+.contact-band p a,
+.about-teaser a,
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
 .site-footer {
   border-top: 1px solid var(--color-line);
   align-items: baseline;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--color-muted);
 }
 .site-footer p {
@@ -267,7 +291,9 @@ nav a[aria-current="page"] {
   padding-block: clamp(4rem, 10vw, 8rem) 3rem;
 }
 .page-heading h1 {
-  max-width: 12ch;
+  max-width: 100%;
+  font-size: clamp(2rem, 5.8vw, 5rem);
+  overflow-wrap: break-word;
 }
 .service-list {
   list-style: none;
@@ -300,8 +326,9 @@ nav a[aria-current="page"] {
 }
 .email-link {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: clamp(1.6rem, 4vw, 3.5rem);
+  font-size: clamp(1.5rem, 6.5vw, 3.5rem);
   overflow-wrap: anywhere;
+  display: inline-block;
 }
 .contact-details {
   line-height: 1.9;
@@ -316,24 +343,28 @@ nav a[aria-current="page"] {
   nav {
     width: 100%;
     justify-content: space-between;
+    gap: 0.25rem;
+  }
+  nav a {
+    font-size: 0.875rem;
   }
   .hero {
     grid-template-columns: 1fr;
     padding-top: 3rem;
+  }
+  .hero h1 {
+    max-width: 11ch;
   }
   .hero-art {
     min-height: 0;
     aspect-ratio: 4 / 3;
   }
   .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .gallery-item,
-  .gallery-item:nth-child(3n + 2) {
-    grid-column: span 1;
+    columns: 2;
+    column-gap: 0.75rem;
   }
   .gallery-item .placeholder {
-    min-height: 13rem;
+    min-height: 0;
   }
   .section-heading,
   .contact-band {
@@ -355,5 +386,11 @@ nav a[aria-current="page"] {
   }
   .site-footer p {
     text-align: left;
+  }
+}
+
+@media (max-width: 419px) {
+  .page-heading h1 {
+    font-size: 2.1rem;
   }
 }
