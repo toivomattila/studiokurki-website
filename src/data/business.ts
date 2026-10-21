@@ -3,7 +3,7 @@ import { SITE_URL } from "./site";
 export const business = {
   name: "Studio Kurki",
   url: SITE_URL,
-  email: "arnon@studiokurki.com",
+  email: "arnon@studiokurki.fi",
   instagram: "https://www.instagram.com/studiokurki/",
   instagramHandle: "@studiokurki",
   locality: "Lahti",
