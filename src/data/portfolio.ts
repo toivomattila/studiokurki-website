@@ -126,6 +126,6 @@ export const serviceImages = {
 
 export const aboutImage = {
   file: "arnon-mustavalkoinen.jpg",
-  alt: "Mustavalkoinen muotokuva miehestä ruutupaidassa",
+  alt: "Valokuvaaja Arnon Kurki mustavalkoisessa muotokuvassa ruutupaidassa",
   source: "da5bac73_ebf0a3b9-909e-4918-9db6-d5f9129f0840.JPG",
 };

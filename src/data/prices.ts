@@ -172,7 +172,7 @@ export const priceGroups: PriceGroup[] = [
 export const priceNotes = [
   "Lapsi- ja perhekuvauksen (S–L), valmistujais- ja muotokuvauksen sekä kihlapotrettien lisäkuvat 15 €/kpl.",
   "Kuvat toimitetaan suojatun Google Drive -linkin kautta.",
-  "Hinnat sisältävät arvonlisäveron.",
+  "Hinnat ovat lopullisia, eikä niihin lisätä arvonlisäveroa, sillä en kuulu arvonlisäverorekisteriin.",
 ];
 
 export const formatPrice = (value: number) =>
